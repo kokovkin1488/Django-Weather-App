@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather app</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">WeatApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Documentation</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h1>Weather app</h1>
+    <div class="row">
+        <div class="col-5 offset-1">
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="city">City</label>
+                {{ form.name }}
+                <input type="submit" name="send" value="Search" class="mt-5 btn btn-danger">
+            </form>
+        </div>
+        <div class="col-5 offset-1">
+            <h1>Information</h1>
+            {% for city in data %}
+                <div class="alert alert-danger">
+                    <b>City: </b> {{ city.city_name }}<br>
+                    <b>Temp: </b> {{ city.temp }}<sup>o</sup><br>
+                    <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="icon" class="img-thumbnail">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
